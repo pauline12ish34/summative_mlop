@@ -30,6 +30,9 @@ class DataPreprocessor:
         Returns:
             train_generator, val_generator
         """
+        # Expected classes for shoe classification
+        expected_classes = ['Boot', 'Sandal', 'Shoe']
+        
         # Data augmentation for training
         train_datagen = ImageDataGenerator(
             rescale=1./255,
@@ -49,23 +52,25 @@ class DataPreprocessor:
             validation_split=validation_split
         )
         
-        # Create training generator
+        # Create training generator with explicit classes
         train_generator = train_datagen.flow_from_directory(
             data_dir,
             target_size=(self.img_height, self.img_width),
             batch_size=self.batch_size,
             class_mode='categorical',
+            classes=expected_classes,  # Enforce specific class order
             subset='training',
             shuffle=True,
             seed=42
         )
         
-        # Create validation generator
+        # Create validation generator with explicit classes
         val_generator = val_datagen.flow_from_directory(
             data_dir,
             target_size=(self.img_height, self.img_width),
             batch_size=self.batch_size,
             class_mode='categorical',
+            classes=expected_classes,  # Enforce specific class order
             subset='validation',
             shuffle=False,
             seed=42

@@ -127,6 +127,11 @@ class ShoePredictor:
         """
         # Load image from bytes
         img = Image.open(io.BytesIO(image_bytes))
+        
+        # Convert to RGB if necessary (handles RGBA, grayscale, etc.)
+        if img.mode != 'RGB':
+            img = img.convert('RGB')
+        
         img = img.resize((self.img_width, self.img_height))
         img_array = np.array(img) / 255.0
         img_array = np.expand_dims(img_array, axis=0)

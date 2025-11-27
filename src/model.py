@@ -134,8 +134,17 @@ class ShoeClassifier:
         Returns:
             Training history
         """
-        # Load existing model
-        self.load_model(model_path)
+        import tensorflow as tf
+        
+        # Load existing model with compile=False to avoid graph issues
+        self.model = tf.keras.models.load_model(model_path, compile=False)
+        
+        # Load class names
+        model_dir = os.path.dirname(model_path)
+        class_names_path = os.path.join(model_dir, 'class_names.json')
+        if os.path.exists(class_names_path):
+            with open(class_names_path, 'r') as f:
+                self.class_names = json.load(f)
         
         # Recompile with lower learning rate for fine-tuning
         self.model.compile(
@@ -146,6 +155,10 @@ class ShoeClassifier:
                     keras.metrics.Recall(name='recall'),
                     keras.metrics.AUC(name='auc')]
         )
+        
+        # Update class names from new generator if needed
+        if train_generator.class_indices:
+            self.class_names = list(train_generator.class_indices.keys())
         
         # Retrain
         history = self.model.fit(
