@@ -2,7 +2,11 @@
 
 ## Project Overview
 End-to-end Machine Learning pipeline for shoe classification using deep learning. The system classifies shoe images into three categories: **Boot**, **Sandal**, and **Shoe**.
-youtube video(yet to come still uploading)
+
+
+youtube video: https://youtu.be/kgZqRPuDZy8
+
+
 ## Features
 - ✅ Deep learning model with transfer learning (ResNet50)
 - ✅ RESTful API for predictions
@@ -185,4 +189,5 @@ Pauline Ishimwe
 
 ## Repository
 https://github.com/pauline12ish34/summative_mlop
+
 
