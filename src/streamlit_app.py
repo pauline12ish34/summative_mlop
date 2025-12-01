@@ -241,7 +241,7 @@ def show_predict():
         with col2:
             st.subheader("Prediction Results")
             
-            if st.button("🔮 Classify", type="primary", use_container_width=True):
+            if st.button(" Classify", type="primary", use_container_width=True):
                 with st.spinner("Analyzing image..."):
                     # Reset file pointer
                     uploaded_file.seek(0)
