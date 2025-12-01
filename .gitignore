@@ -33,11 +33,9 @@ data/test/
 data/uploads/
 temp/
 *.csv
-*.h5
 *.pkl
 
 # Models (keep .gitkeep for directory structure)
-models/*.h5
 models/*.tf
 !models/.gitkeep
 
